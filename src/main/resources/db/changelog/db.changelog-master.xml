@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <include file="scripts/sql/2024-01-12_1_create_points_table.sql" relativeToChangelogFile="true"/>
+    <include file="scripts/sql/2024-01-16_2_create_users_table.sql" relativeToChangelogFile="true"/>
+    <include file="scripts/sql/2024-01-16_3_add_column_user_id_in_points_table.sql" relativeToChangelogFile="true"/>
+</databaseChangeLog>

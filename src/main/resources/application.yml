@@ -1,0 +1,8 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/lab3
+    password: lalala
+    username: neonik
+  liquibase:
+    enabled: true
+    change-log: classpath:db/changelog/db.changelog-master.xml

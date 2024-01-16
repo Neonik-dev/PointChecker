@@ -1,0 +1,49 @@
+package se.ifmo.ru.web.lab4.pointchecker.persistence.model;
+
+import jakarta.persistence.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+import se.ifmo.ru.web.lab4.pointchecker.dto.DirtyPointDto;
+import se.ifmo.ru.web.lab4.pointchecker.utils.CheckPoint;
+
+import java.time.OffsetDateTime;
+
+@Data
+@NoArgsConstructor
+@Entity
+@Table(name = "points")
+public class Point {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "x", nullable = false)
+    private double x;
+
+    @Column(name = "y", nullable = false)
+    private int y;
+
+    @Column(name = "r", nullable = false)
+    private double r;
+
+    @Column(name = "is_hit", nullable = false)
+    private boolean isHit;
+
+    @ManyToOne(fetch=FetchType.LAZY)
+
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @CreationTimestamp
+    @Column(name = "created_at", nullable = false, updatable = false)
+    private OffsetDateTime createdAt;
+
+    public Point(DirtyPointDto dto, User user) {
+        x = Double.parseDouble(dto.x());
+        y = Integer.parseInt(dto.y());
+        r = Double.parseDouble(dto.r());
+        isHit = CheckPoint.checkHit(dto);
+        this.user = user;
+    }
+}
