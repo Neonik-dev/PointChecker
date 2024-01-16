@@ -25,13 +25,6 @@ public class UserServiceImpl implements UserService {
     private final JwtUtil jwtUtil;
 
     @Override
-    public User getUserByEmail(String email) {
-        return userRepository.findUserByEmailIgnoreCase(email)
-                .orElseThrow(() -> new UsernameNotFoundException("No user found with email"));
-    }
-
-
-    @Override
     public Optional<User> createUser(User user) {
         User newUser = userRepository.save(user);
         userRepository.flush();
