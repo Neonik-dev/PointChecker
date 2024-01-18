@@ -14,8 +14,6 @@ import se.ifmo.ru.web.lab4.pointchecker.persistence.repository.UserRepository;
 import se.ifmo.ru.web.lab4.pointchecker.persistence.service.UserService;
 import se.ifmo.ru.web.lab4.pointchecker.utils.JwtUtil;
 
-import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.Optional;
 
 @Service
