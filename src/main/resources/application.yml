@@ -6,7 +6,24 @@ spring:
   liquibase:
     enabled: true
     change-log: classpath:db/changelog/db.changelog-master.xml
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: lians2228@gmail.com
+    password: mrxadrcwtyxqabbu
+    properties:
+      mail:
+        debug: false
+        smtp:
+          auth: true
+          starttls:
+            enable: true
 
 jwt:
   secret: 3RH7aHFDcWmpvtvAUhssAPSWheh87wWtu52HQvdlkDch7JkGrnKVsh9FJknroEC2
   exp: 10 080 # week (set in minutes)
+
+confirmation:
+  url:
+    base: "http://localhost:8080"
+  expiration: 60 # hour

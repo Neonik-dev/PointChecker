@@ -1,6 +1,7 @@
 package se.ifmo.ru.web.lab4.pointchecker.persistence.service.impl;
 
 import io.jsonwebtoken.Claims;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class PointServiceImpl implements PointService {
     private final PointRepository pointRepository;
 

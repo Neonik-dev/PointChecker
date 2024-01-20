@@ -1,5 +1,6 @@
 package se.ifmo.ru.web.lab4.pointchecker.persistence.service.impl;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -17,11 +18,13 @@ import se.ifmo.ru.web.lab4.pointchecker.utils.JwtUtil;
 import java.util.Optional;
 
 @Service
+@Transactional
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder bCrypt;
+    private final EmailServiceImpl emailService;
     private final JwtUtil jwtUtil;
 
     @Override
@@ -60,11 +63,13 @@ public class UserServiceImpl implements UserService {
         User user = User.builder()
                 .email(registrationRequest.email())
                 .password(bCryptPasswordEncoder.encode(registrationRequest.password()))
+                .isVerified(false)
                 .build();
 
         User newUser = createUser(user).orElseThrow(
                 () -> new AuthException("Registration Error", "Invalid user data", "Failed to create a new user in the database")
         );
+        emailService.sendSimpleMessage(newUser);
 
         String token = jwtUtil.createToken(newUser);
         return new LoginResponse(token);

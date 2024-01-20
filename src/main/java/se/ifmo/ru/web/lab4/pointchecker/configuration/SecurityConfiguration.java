@@ -50,7 +50,6 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable)
-                // Отключение CORS (разрешение запросов со всех доменов)
                 .cors(cors -> cors.configurationSource(request -> {
                     var corsConfiguration = new CorsConfiguration();
                     corsConfiguration.setAllowedOriginPatterns(List.of("*"));
@@ -60,7 +59,7 @@ public class SecurityConfiguration {
                     return corsConfiguration;
                 }));
         http.authorizeHttpRequests(rQ -> {
-            rQ.requestMatchers("/auth/login", "/auth/signup").permitAll();
+            rQ.requestMatchers("/auth/login", "/auth/signup", "/confirm-account").permitAll();
             rQ.requestMatchers(AUTH_WHITELIST).permitAll();
             rQ.requestMatchers("/**").authenticated();
         });

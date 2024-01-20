@@ -29,4 +29,7 @@ public class User {
     @CreationTimestamp
     @Column(name = "created_at", nullable = false, updatable = false)
     private OffsetDateTime createdAt;
+
+    @Column(name = "verified", nullable = false)
+    private Boolean isVerified;
 }

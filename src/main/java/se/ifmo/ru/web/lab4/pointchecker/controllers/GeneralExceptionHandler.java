@@ -7,12 +7,13 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import se.ifmo.ru.web.lab4.pointchecker.dto.ErrorResponse;
 import se.ifmo.ru.web.lab4.pointchecker.exception.AuthException;
 
+import java.sql.SQLException;
 import java.util.Arrays;
 
 @ControllerAdvice
 public class GeneralExceptionHandler {
 
-    @ExceptionHandler(value = {IllegalArgumentException.class, IllegalStateException.class})
+    @ExceptionHandler(value = {IllegalArgumentException.class, IllegalStateException.class, SQLException.class})
     protected ResponseEntity<ErrorResponse> handleConflict(Exception exception) {
         return ResponseEntity.badRequest().body(new ErrorResponse(
                 exception.getClass().getSimpleName(),

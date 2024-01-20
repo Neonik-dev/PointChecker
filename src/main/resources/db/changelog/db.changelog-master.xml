@@ -8,4 +8,6 @@
     <include file="scripts/sql/2024-01-16_2_create_users_table.sql" relativeToChangelogFile="true"/>
     <include file="scripts/sql/2024-01-16_3_add_column_user_id_in_points_table.sql" relativeToChangelogFile="true"/>
     <include file="scripts/sql/2024-01-20_4_alter_column_coordinates_in_points_table.sql" relativeToChangelogFile="true"/>
+    <include file="scripts/sql/2024-01-20_5_create_confirmation_token_table.sql" relativeToChangelogFile="true"/>
+    <include file="scripts/sql/2024-01-20_6_add_verified_column.sql" relativeToChangelogFile="true"/>
 </databaseChangeLog>
