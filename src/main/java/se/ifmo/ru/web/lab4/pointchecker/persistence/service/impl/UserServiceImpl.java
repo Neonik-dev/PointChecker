@@ -26,6 +26,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Optional<User> createUser(User user) {
+        // todo вдруг такой юзер уже существует
         User newUser = userRepository.save(user);
         userRepository.flush();
         return Optional.of(newUser);
@@ -58,8 +59,6 @@ public class UserServiceImpl implements UserService {
     public LoginResponse register(RegistrationRequest registrationRequest) {
         User user = User.builder()
                 .email(registrationRequest.email())
-//                .firstName(registrationRequest.firstName())
-//                .lastName(registrationRequest.lastName())
                 .password(bCryptPasswordEncoder.encode(registrationRequest.password()))
                 .build();
 
