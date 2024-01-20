@@ -8,17 +8,17 @@ public class CheckPoint {
         double y = dto.y();
         double r = dto.r();
 
-        // Triangle in top-right quadrant
+        // Circle in top-right quadrant
         if (x >= 0 && y >= 0) {
-            return (x <= r) && (-x + r >= y);
+            return (x * x + y * y) <= (r / 2) * (r / 2);
         }
-        // Circle in bottom-right quadrant
+        // Triangle in bottom-right quadrant
         if (x >= 0 && y <= 0) {
-            return (x * x + y * y) <= (r * r);
+            return (x <= r / 2) && (x - r / 2 <= y);
         }
         // Rectangle in bottom-left quadrant
         if (x <= 0 && y <= 0) {
-            return (-y <= r / 2) && (-x <= r);
+            return (-y <= r) && (-x <= r);
         }
         // Empty in top-left quadrant
         return false;
