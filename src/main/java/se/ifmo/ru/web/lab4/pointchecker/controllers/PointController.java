@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(value = "point/")
+@RequestMapping(value = "/point")
 public class PointController {
     private final PointService pointService;
     private final UserRepository userRepository;

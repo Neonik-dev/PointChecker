@@ -9,8 +9,6 @@ public record RegistrationRequest(
         String email,
         @NotBlank
         @Size(min = 7)
-        String password,
-        @NotBlank
-        String firstName
+        String password
 ) {
 }

@@ -40,6 +40,7 @@ public class UserServiceImpl implements UserService {
         }
         throw new UsernameNotFoundException("Invalid password");
     }
+
     @Override
     public LoginResponse login(LoginRequest loginRequest) {
         try {
