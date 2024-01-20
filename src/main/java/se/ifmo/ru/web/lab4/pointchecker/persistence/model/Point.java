@@ -30,20 +30,18 @@ public class Point {
     @Column(name = "is_hit", nullable = false)
     private boolean isHit;
 
-    @ManyToOne(fetch=FetchType.LAZY)
-
-    @JoinColumn(name = "user_id")
-    private User user;
+    @Column(name = "user_id", updatable = false, nullable = false)
+    private Long userId;
 
     @CreationTimestamp
     @Column(name = "created_at", nullable = false, updatable = false)
     private OffsetDateTime createdAt;
 
-    public Point(DirtyPointDto dto, User user) {
+    public Point(DirtyPointDto dto, Long userId) {
         x = Double.parseDouble(dto.x());
         y = Integer.parseInt(dto.y());
         r = Double.parseDouble(dto.r());
         isHit = CheckPoint.checkHit(dto);
-        this.user = user;
+        this.userId = userId;
     }
 }

@@ -1,6 +1,8 @@
 package se.ifmo.ru.web.lab4.pointchecker.controllers;
 
+import io.jsonwebtoken.Claims;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import se.ifmo.ru.web.lab4.pointchecker.dto.DirtyPointDto;
 import se.ifmo.ru.web.lab4.pointchecker.dto.PointDto;
@@ -18,7 +20,9 @@ public class PointController {
 
     @GetMapping(value = "/all")
     public List<PointDto> getAllPoints() {
-        return pointService.getPointsByUserId(userRepository.getReferenceById(1L));
+        Claims credentials = (Claims) SecurityContextHolder.getContext().getAuthentication().getCredentials();
+        Long userId = Long.parseLong((String) credentials.get("userId"));
+        return pointService.getPointsByUserId(userId);
     }
 
     @PostMapping(value = "/add")

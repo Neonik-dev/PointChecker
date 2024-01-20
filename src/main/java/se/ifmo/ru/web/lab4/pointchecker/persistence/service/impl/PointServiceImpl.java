@@ -18,9 +18,9 @@ public class PointServiceImpl implements PointService {
     private final PointRepository pointRepository;
 
     @Override
-    public List<PointDto> getPointsByUserId(User user) {
+    public List<PointDto> getPointsByUserId(Long userId) {
         // todo переписать на mapper
-        return pointRepository.findPointsByUser(user)
+        return pointRepository.findPointsByUserId(userId)
                 .stream()
                 .map(PointMapper::mapper)
                 .toList();
@@ -29,8 +29,8 @@ public class PointServiceImpl implements PointService {
     @Override
     public List<PointDto> addUserPoint(DirtyPointDto dto, User user) {
         // todo ask как правильно реализовать этот момент
-        Point point = new Point(dto, user);
+        Point point = new Point(dto, 1L);
         pointRepository.save(point);
-        return getPointsByUserId(user);
+        return getPointsByUserId(1L);
     }
 }
