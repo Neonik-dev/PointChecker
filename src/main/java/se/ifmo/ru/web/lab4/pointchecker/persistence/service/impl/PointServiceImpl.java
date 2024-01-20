@@ -30,6 +30,7 @@ public class PointServiceImpl implements PointService {
     @Override
     public List<PointDto> addPoint(DirtyPointDto dto) {
         // todo ask как правильно реализовать этот момент
+
         Point point = new Point(dto, getUserIdFromToken());
         pointRepository.save(point);
         return getUserPoints();

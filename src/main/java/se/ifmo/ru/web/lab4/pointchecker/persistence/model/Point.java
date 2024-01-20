@@ -22,7 +22,7 @@ public class Point {
     private double x;
 
     @Column(name = "y", nullable = false)
-    private int y;
+    private double y;
 
     @Column(name = "r", nullable = false)
     private double r;
@@ -38,9 +38,9 @@ public class Point {
     private OffsetDateTime createdAt;
 
     public Point(DirtyPointDto dto, Long userId) {
-        x = Double.parseDouble(dto.x());
-        y = Integer.parseInt(dto.y());
-        r = Double.parseDouble(dto.r());
+        x = dto.x();
+        y = dto.y();
+        r = dto.r();
         isHit = CheckPoint.checkHit(dto);
         this.userId = userId;
     }

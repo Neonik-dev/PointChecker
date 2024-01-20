@@ -4,9 +4,9 @@ import se.ifmo.ru.web.lab4.pointchecker.dto.DirtyPointDto;
 
 public class CheckPoint {
     public static boolean checkHit(DirtyPointDto dto) {
-        double x = Double.parseDouble(dto.x());
-        double y = Double.parseDouble(dto.y());
-        double r = Double.parseDouble(dto.r());
+        double x = dto.x();
+        double y = dto.y();
+        double r = dto.r();
 
         // Triangle in top-right quadrant
         if (x >= 0 && y >= 0) {

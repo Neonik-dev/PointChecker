@@ -1,5 +1,6 @@
 package se.ifmo.ru.web.lab4.pointchecker.controllers;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import se.ifmo.ru.web.lab4.pointchecker.dto.DirtyPointDto;
@@ -20,7 +21,7 @@ public class PointController {
     }
 
     @PostMapping(value = "/add")
-    public List<PointDto> addPoint(@RequestBody DirtyPointDto dto) {
+    public List<PointDto> addPoint(@RequestBody @Valid DirtyPointDto dto) {
         return pointService.addPoint(dto);
     }
 }
