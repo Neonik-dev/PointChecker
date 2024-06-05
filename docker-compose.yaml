@@ -1,0 +1,36 @@
+version: "3.9"
+
+services:
+  lab3-postgres:
+    image: postgres:15.4
+    container_name: lab3_postgres_db
+    restart: always
+    ports:
+      - "5432:5432"
+    env_file:
+      - config.env
+    volumes:
+      - lab3-postgres-data:/var/lib/postgresql/data
+    networks:
+      - lab3_postgres_bd_net
+
+  lab3-pgadmin:
+    container_name: lab3-pgadmin
+    image: dpage/pgadmin4:7.6
+    restart: always
+    env_file:
+      - config.env
+    ports:
+      - "8081:80"
+    volumes:
+      - lab3-pgadmin-data:/var/lib/pgAdmin
+    networks:
+      - lab3_postgres_bd_net
+
+networks:
+  lab3_postgres_bd_net:
+    driver: bridge
+
+volumes:
+  lab3-postgres-data:
+  lab3-pgadmin-data:
